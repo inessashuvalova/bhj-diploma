@@ -50,14 +50,17 @@ class AccountsWidget {
    * Отображает список полученных счетов с помощью
    * метода renderItem()
    * */
-  async update() {
-    const isCurrentUser = User.current();
-    if (!isCurrentUser) {
+  update() {
+    const currentUser = User.current();
+    if (!currentUser) {
       return;
     }
-    await Account.list(isCurrentUser, this.renderItem.bind(this));
+    Account.list(currentUser, (data) => {
+      this.clear();
+      this.renderItem(data);
+    });
   }
-
+  
   /**
    * Очищает список ранее отображённых счетов.
    * Для этого необходимо удалять все элементы .account

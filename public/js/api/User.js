@@ -4,16 +4,14 @@
    * Имеет свойство URL, равное '/user'.
    * */
   class User {
-    URL = '/user';
+    static URL = '/user';
     /**
      * Устанавливает текущего пользователя в
      * локальном хранилище.
      * */
-    static setCurrent(user) {
-       for(let key in user.data) {
-      localStorage.setItem(`${key}`, `${user.data[key]}`);
-      }
-        console.log(localStorage);
+    static setCurrent(data) {
+      const { id, name } = data;
+      localStorage.setItem('user', JSON.stringify({ id, name }));
     }
   
 
@@ -37,13 +35,18 @@
      * Получает информацию о текущем
      * авторизованном пользователе.
      * */
-    static async fetch( data, callback = f => f ) {
-      return await createRequest({
+    static fetch( data, callback = f => f ) {
+      return createRequest({
         data,
         url: this.URL + '/current',
         method: 'GET',
         responseType: 'json',
-        callback,
+        callback: (response) => {
+          if (response) {
+            this.current();
+          };
+          callback(response);
+        },
       });
     }
 
@@ -74,13 +77,22 @@
      * сохранить пользователя через метод
      * User.setCurrent.
      * */
-    static async register( data, callback = f => f) {
-      return await createRequest({
+    static register( data, callback = f => f) {
+      return createRequest({
         url: this.URL + '/register',
         method: 'POST',
         responseType: 'json',
         data,
-        callback,
+        callback: (response) => {
+          if (!response.success) {
+            console.log(response.error.email);
+            return;
+          };
+          if (response && response.user) {
+            this.setCurrent(response.user);
+          };
+          callback(response);
+        },
       });
     }
 
@@ -88,8 +100,8 @@
      * Производит выход из приложения. После успешного
      * выхода необходимо вызвать метод User.unsetCurrent
      * */
-    static async logout( data, callback = f => f) {
-      return await createRequest({
+    static logout( data, callback = f => f) {
+      return createRequest({
         url: this.URL + '/logout',
         method: 'POST',
         data,

@@ -6,35 +6,39 @@
   const createRequest = async (options = {}) => {
     if (!options.data) {
       return;
-    }
-    let requestURL = options.url;
+    };
+
     const requestData = new FormData();
-    
-    if (options.data) {
-        const urlArray = Object.entries(data).map(([key, value]) => key + '=' + value);
-        const urlAppend = urlArray.join('&'); 
-        requestURL += '?' + urlAppend;
-      } else {
-        Object.entries(data).forEach(([key, value]) =>
-          requestData.append(key, value)
-        );
-      }
+    let requestUrl = options.url;
+    const xhr = new XMLHttpRequest();
+  
+    if (options.method == 'GET' && Object.keys(options.data).length != 0) {
+      requestUrl = `${options.url}?${getUrl(options.data)}`;
+    } else {
+      Object.entries(options.data).forEach(([key, value]) => requestData.append(key, value));
     }
+  
+    xhr.addEventListener('readystatechange', function () {
+      if (xhr.readyState == xhr.DONE) {
+          let responseJSON = response.json();
+          return responseJSON;
+        } else {
+          console.error('Ошибка HTTP: ' + response.status);
+        }
+      });
+    
   
     try {
-      let response = await fetch(requestURL, {
-        method: options.method,
-        body: options.method === 'GET' ? null : requestData,
-      });
-      if (response.ok) {
-        let responseJSON = await response.json();
-        return responseJSON;
-      } else {
-        console.error('Ошибка HTTP: ' + response.status);
-      }
-    } catch (err) {
-      return Promise.reject(err);
+      xhr.open(options.method, requestUrl);
+      xhr.send(requestData);
+    } catch (error) {
+      options.callback(error);
     }
-  
+    return xhr;
+  };
+
+  function getUrl(obj) {
+    return Object.entries(obj).map(([key, value]) => `${key}=${value}`).join('&');
+  }
   
  
