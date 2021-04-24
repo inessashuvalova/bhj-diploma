@@ -27,7 +27,7 @@
       const btnClose = document.querySelectorAll('button[data-dismiss="modal"]');
       btnClose.forEach(elem => {
         elem.addEventListener( "click", () => {
-          this.onClose(e);
+          this.onClose();
         })
       })
     }
@@ -37,7 +37,6 @@
      * Закрывает текущее окно (Modal.close())
      * */
     onClose(e) {
-      e.preventDefault();
       this.close();
     }
     /**

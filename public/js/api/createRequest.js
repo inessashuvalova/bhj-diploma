@@ -3,7 +3,7 @@
  * на сервер.
  * */
 
-  const createRequest = async (options = {}) => {
+  const createRequest = (options = {}) => {
     if (!options.data) {
       return;
     };
@@ -12,24 +12,23 @@
     let requestUrl = options.url;
     const xhr = new XMLHttpRequest();
   
-    if (options.method == 'GET' && Object.keys(options.data).length != 0) {
+    if (options.methods == 'GET' && Object.keys(options.data).length != 0) {
       requestUrl = `${options.url}?${getUrl(options.data)}`;
     } else {
       Object.entries(options.data).forEach(([key, value]) => requestData.append(key, value));
     }
   
-    xhr.addEventListener('readystatechange', function () {
-      if (xhr.readyState == xhr.DONE) {
-          let responseJSON = response.json();
-          return responseJSON;
-        } else {
-          console.error('Ошибка HTTP: ' + response.status);
+    xhr.open(options.method, requestUrl);
+    xhr.withCredentials = true;
+    xhr.responseType = options.responseType;
+
+    xhr.addEventListener('readystatechange', function() {
+        if (this.readyState === xhr.DONE && xhr.status === 200) {
+            options.callback(xhr.response.error, xhr.response);
         }
-      });
-    
-  
+    });
+
     try {
-      xhr.open(options.method, requestUrl);
       xhr.send(requestData);
     } catch (error) {
       options.callback(error);
@@ -42,3 +41,4 @@
   }
   
  
+    
