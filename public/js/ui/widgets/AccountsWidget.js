@@ -83,8 +83,9 @@ class AccountsWidget {
       document.querySelector('.active').classList.remove('active');
       element.classList.add('active');
     })
-    App.showPage( 'transactions', { account_id: id_счёта })
+    App.showPage( 'transactions', { account_id: element.dataset.id })
   }
+
   /**
    * Возвращает HTML-код счёта для последующего
    * отображения в боковой колонке.

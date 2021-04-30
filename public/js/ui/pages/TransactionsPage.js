@@ -130,9 +130,9 @@ class TransactionsPage {
   /**
    * Устанавливает заголовок в элемент .content-title
    * */
-  renderTitle(data){
-    const titleElement = document.querySelector('.content-title');
-    titleElement.textContent = data.name;
+  renderTitle(name){
+    const titleElement = this.element.querySelector('.content-title');
+    titleElement.innerText = name;
   }
 
   /**
@@ -200,15 +200,12 @@ class TransactionsPage {
    * Отрисовывает список транзакций на странице
    * используя getTransactionHTML
    * */
-  renderTransactions(options){
-    if (!options.data) {
-      return;
-    }
+  renderTransactions(data) {
+    const template = data.map(el => this.getTransactionHTML(el)).join(' ');
     const transactionContent = this.element.querySelector('.content');
     transactionContent.innerHTML = '';
-    const template = options.data
-      .map((transaction) => this.getTransactionHTML(transaction))
-      .join(' ');
     transactionContent.insertAdjacentHTML('afterbegin', template);
   }
   }
+
+  

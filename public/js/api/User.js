@@ -9,27 +9,20 @@
      * Устанавливает текущего пользователя в
      * локальном хранилище.
      * */
-    static setCurrent(data) {
-      const { id, name } = data;
-      localStorage.setItem('user', JSON.stringify({ id, name }));
-    }
+     static setCurrent( user ) { localStorage.setItem( 'user', JSON.stringify( user ) ) }
   
 
     /**
      * Удаляет информацию об авторизованном
      * пользователе из локального хранилища.
      * */
-    static unsetCurrent() {
-      localStorage.removeItem('user');
-    }
+    static unsetCurrent() { localStorage.removeItem('user');}
 
     /**
      * Возвращает текущего авторизованного пользователя
      * из локального хранилища
      * */
-    static current() {
-      return JSON.parse(localStorage.getItem('user'))
-    }
+    static current() { return JSON.parse(localStorage.getItem('user')) }
 
     /**
      * Получает информацию о текущем
@@ -85,7 +78,7 @@
         data,
         callback: (response) => {
           if (!response.success) {
-            console.log(response.error.email);
+            console.log(response.error);
             return;
           };
           if (response && response.user) {

@@ -13,9 +13,11 @@ class AsyncForm {
    * через registerEvents()
    * */
   constructor( element ) {
+    if (!element) {
+      throw new Error('Переданный в качестве параметра элемент не существует');
+    };
     this.element = element;
     this.registerEvents();
-    this.dataLogin = new function(){};
     
       }
       
@@ -43,14 +45,12 @@ class AsyncForm {
    * }
    * */
   getData() {
-    const formData = new FormData( this.element ),
-    entries = formData.entries();
 
-    for (let item of entries) {
-      const key = item[0],
-       value = item[1];
-        this.dataLogin[`${key}`] = `${value}`;
-}
+       let data = {}
+       for (let input of Array.from(this.element.querySelectorAll( 'input' )).concat(Array.from(this.element.querySelectorAll( 'select' )))) {
+         data[ input.getAttribute( 'name' ) ] = input.value;
+       }
+       return data;
   }
 
   onSubmit( options ) {

@@ -32,9 +32,9 @@
      * вызывает App.update(), сбрасывает форму и закрывает окно,
      * в котором находится форма
      * */
-    async onSubmit(options) {
+     onSubmit(options) {
       const modal = this.element.closest('.modal').dataset.modalId;
-      await Transaction.create(options, App.update.bind(App));
+      Transaction.create(options, App.update.bind(App));
       this.element.reset()
       App.modals[modal].close();
     }

@@ -15,12 +15,7 @@
         method: 'GET',
         responseType: 'json',
         data,
-        callback: (response) => {
-          if (!response.success) {
-            return;
-          };
-          callback(response.data);
-        }
+        callback,
       });
     }
 
@@ -30,17 +25,13 @@
      * что наследуется от Entity)
      * */
     static create(data, callback = f => f ) {
+      const newData = {...data, _method: 'PUT'}
       return createRequest({
         url: this.URL,
         method: 'POST',
         responseType: 'json',
-        data: Object.assign({ _method: 'PUT' }, data),
-        callback: (response) => {
-          if (!response.success) {
-            return;
-          };
-          callback(response);
-        },
+        data: newData,
+        callback,
       });
     }
 
@@ -49,17 +40,13 @@
      * (в зависимости от того, что наследуется от Entity)
      * */
     static remove(id = '', data, callback = f => f) {
+      const newData = { ...data, _method: 'DELETE', id };
       return createRequest({
         url: this.URL,
-        data: Object.assign({ _method: 'DELETE' }, data, { id: id }),
+        data: newData,
         method: 'POST',
         responseType: 'json',
-        callback: (response) => {
-          if (!response.success) {
-            return;
-          };
-          callback(response);
-        },
+        callback,
       });
     }
   }

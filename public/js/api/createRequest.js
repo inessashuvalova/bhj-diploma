@@ -8,16 +8,19 @@
       return;
     };
 
+    const { methods = 'GET', data = {} } = options;
     const requestData = new FormData();
     let requestUrl = options.url;
     const xhr = new XMLHttpRequest();
-  
+
+    if (options.data) {
     if (options.methods == 'GET' && Object.keys(options.data).length != 0) {
       requestUrl = `${options.url}?${getUrl(options.data)}`;
     } else {
       Object.entries(options.data).forEach(([key, value]) => requestData.append(key, value));
     }
-  
+    }
+    
     xhr.open(options.method, requestUrl);
     xhr.withCredentials = true;
     xhr.responseType = options.responseType;
@@ -29,7 +32,7 @@
     });
 
     try {
-      xhr.send(requestData);
+      xhr.send(options.method !== "GET" ? requestData : null);
     } catch (error) {
       options.callback(error);
     }

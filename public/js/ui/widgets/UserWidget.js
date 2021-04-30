@@ -26,9 +26,14 @@
      * авторизованного пользователя
      * */
     update() {
-      User.current();
-        console.log(localStorage.getItem('name')); 
-          const userName = document.querySelector('.user-name');
-            userName.innerHTML = `${localStorage.getItem('name')}`;
+      const currentUser = User.current();
+      if (!currentUser) {
+        return;
+      }
+      const userName = document.querySelector('.user-name');
+      userName.textContent = currentUser.name;
     }
   }
+
+
+  
