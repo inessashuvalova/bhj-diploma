@@ -11,6 +11,12 @@
       "email": "inessa.shuvalova@mail.ru",
       "password": "iloverussia282828",
       "id": "rsmdv7o8ko3u4jx5"
+    },
+    {
+      "name": "",
+      "email": "",
+      "password": "",
+      "id": "rsmdv5c8koilmz9n"
     }
   ],
   "accounts": [
@@ -28,6 +34,11 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
+    },
+    {
+      "name": "",
+      "user_id": "rsmdv7o8ko3u4jx5",
+      "id": "rsmdv9n4koilmdnb"
     }
   ],
   "transactions": [

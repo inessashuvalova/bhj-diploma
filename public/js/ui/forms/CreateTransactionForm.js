@@ -9,10 +9,10 @@
      * */
     constructor(element) {
       super(element);
-      if (App.setState === 'user-logged') {
-        this.renderAccountsList();
+      this.element = element;
+      this.renderAccountsList();
       }
-    }
+    
 
     /**
      * Получает список счетов с помощью Account.list
@@ -36,6 +36,7 @@
       const modal = this.element.closest('.modal').dataset.modalId;
       Transaction.create(options, App.update.bind(App));
       this.element.reset()
-      App.modals[modal].close();
-    }
+      App.getModal( `new${options.type.slice(0,1).toUpperCase()}${options.type.slice(1)}` ).close()
+      App.update(); 
   }
+}

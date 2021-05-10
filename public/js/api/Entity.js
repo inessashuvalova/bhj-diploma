@@ -25,26 +25,35 @@
      * что наследуется от Entity)
      * */
     static create(data, callback = f => f ) {
-      const newData = {...data, _method: 'PUT'}
       return createRequest({
-        url: this.URL,
-        method: 'POST',
+        url: this.URL, 
+        data: Object.assign( {}, data),
         responseType: 'json',
-        data: newData,
+        method: 'PUT',
         callback,
-      });
+     })
     }
+
+    static get( id = '', data, callback = f => f ) {
+      return createRequest({ 
+        method: 'GET',
+        url: `${this.URL}/${id}`,
+        data, 
+        callback,
+      })
+    }
+  
 
     /**
      * Удаляет информацию о счёте или доходе/расходе
      * (в зависимости от того, что наследуется от Entity)
      * */
     static remove(id = '', data, callback = f => f) {
-      const newData = { ...data, _method: 'DELETE', id };
+      const newData = { ...data, id };
       return createRequest({
         url: this.URL,
         data: newData,
-        method: 'POST',
+        method: 'DELETE',
         responseType: 'json',
         callback,
       });

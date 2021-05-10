@@ -55,7 +55,7 @@
       const itemLogout = document.querySelector('li.menu-item_logout').querySelector('a');
       itemLogout.addEventListener('click', (evt) => {
         evt.preventDefault();
-        User.logout(User.current());
+        User.logout(User.current(), () => App.setState('init'));
       },
       false
     );

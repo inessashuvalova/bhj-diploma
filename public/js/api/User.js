@@ -9,20 +9,26 @@
      * Устанавливает текущего пользователя в
      * локальном хранилище.
      * */
-     static setCurrent( user ) { localStorage.setItem( 'user', JSON.stringify( user ) ) }
+     static setCurrent(user) { 
+       localStorage.setItem('user', JSON.stringify(user))
+       }
   
 
     /**
      * Удаляет информацию об авторизованном
      * пользователе из локального хранилища.
      * */
-    static unsetCurrent() { localStorage.removeItem('user');}
+    static unsetCurrent() { 
+      localStorage.removeItem('user');
+    }
 
     /**
      * Возвращает текущего авторизованного пользователя
      * из локального хранилища
      * */
-    static current() { return JSON.parse(localStorage.getItem('user')) }
+    static current() { 
+      return JSON.parse(localStorage.getItem('user'))
+     }
 
     /**
      * Получает информацию о текущем
@@ -34,12 +40,13 @@
         url: this.URL + '/current',
         method: 'GET',
         responseType: 'json',
-        callback: (response) => {
-          if (response) {
-            this.current();
-          };
-          callback(response);
-        },
+        callback: (err, response) => {
+          if (!err) { 
+            User.setCurrent({id: response.user.id, name: response.user.name})
+          } else { 
+            User.unsetCurrent()}
+          callback(err, response);
+        }
       });
     }
 
@@ -56,11 +63,10 @@
         responseType: 'json',
         data,
         callback: (err, response) => {
-          if (response && response.user) {
-            this.setCurrent(response.user);
-          }
-          callback(err, response);
-        }
+          if (!err) { 
+            User.setCurrent({id: response.user.id, name: response.user.name})}
+          callback(err, response );
+        }     
       });
     }
 
@@ -76,16 +82,11 @@
         method: 'POST',
         responseType: 'json',
         data,
-        callback: (response) => {
-          if (!response.success) {
-            console.log(response.error);
-            return;
-          };
-          if (response && response.user) {
-            this.setCurrent(response.user);
-          };
-          callback(response);
-        },
+        callback: (err, response) => {
+          if (!err) { 
+            User.setCurrent({id: response.user.id, name: response.user.name})} 
+          callback(err, response);
+        }     
       });
     }
 

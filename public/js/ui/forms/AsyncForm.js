@@ -45,13 +45,16 @@ class AsyncForm {
    * }
    * */
   getData() {
+    return [...new FormData(this.element).entries()].reduce(
+      (target, [name, value]) => {
+        target[name] = value;
+        return target;
+      },
+      {}
+    );
+    }
 
-       let data = {}
-       for (let input of Array.from(this.element.querySelectorAll( 'input' )).concat(Array.from(this.element.querySelectorAll( 'select' )))) {
-         data[ input.getAttribute( 'name' ) ] = input.value;
-       }
-       return data;
-  }
+
 
   onSubmit( options ) {
 
@@ -65,4 +68,4 @@ class AsyncForm {
     this.onSubmit(this.getData());
       }
     
-}
+    }
