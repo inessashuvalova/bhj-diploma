@@ -8,7 +8,6 @@
       return;
     };
 
-    const { methods = 'GET', data = {} } = options;
     const requestData = new FormData();
     let requestUrl = options.url;
     const xhr = new XMLHttpRequest();

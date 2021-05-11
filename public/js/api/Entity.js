@@ -27,7 +27,7 @@
     static create(data, callback = f => f ) {
       return createRequest({
         url: this.URL, 
-        data: Object.assign( {}, data),
+        data,
         responseType: 'json',
         method: 'PUT',
         callback,

@@ -42,7 +42,7 @@
         responseType: 'json',
         callback: (err, response) => {
           if (!err) { 
-            User.setCurrent({id: response.user.id, name: response.user.name})
+            User.setCurrent(response.user)
           } else { 
             User.unsetCurrent()}
           callback(err, response);
@@ -64,7 +64,8 @@
         data,
         callback: (err, response) => {
           if (!err) { 
-            User.setCurrent({id: response.user.id, name: response.user.name})}
+            User.setCurrent(response.user)
+          }
           callback(err, response );
         }     
       });
@@ -84,7 +85,8 @@
         data,
         callback: (err, response) => {
           if (!err) { 
-            User.setCurrent({id: response.user.id, name: response.user.name})} 
+            User.setCurrent(response.user)
+          } 
           callback(err, response);
         }     
       });
