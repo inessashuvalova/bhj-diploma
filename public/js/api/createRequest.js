@@ -13,7 +13,7 @@
     const xhr = new XMLHttpRequest();
 
     if (options.data) {
-    if (options.methods == 'GET' && Object.keys(options.data).length != 0) {
+    if (options.method == 'GET' && Object.keys(options.data).length != 0) {
       requestUrl = `${options.url}?${getUrl(options.data)}`;
     } else {
       Object.entries(options.data).forEach(([key, value]) => requestData.append(key, value));
@@ -25,13 +25,15 @@
     xhr.responseType = options.responseType;
 
     xhr.addEventListener('readystatechange', function() {
-        if (this.readyState === xhr.DONE && xhr.status === 200) {
-            options.callback(xhr.response.error, xhr.response);
-        }
+      if (xhr.readyState == xhr.DONE) {
+        const response = xhr.responseText;
+        options.callback(JSON.parse(response));
+      };
     });
-
+  
     try {
-      xhr.send(options.method !== "GET" ? requestData : null);
+      xhr.open(options.method, requestUrl);
+      xhr.send(requestData);
     } catch (error) {
       options.callback(error);
     }

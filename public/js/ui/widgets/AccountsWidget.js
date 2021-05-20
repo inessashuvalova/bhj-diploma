@@ -105,14 +105,13 @@ class AccountsWidget {
    * AccountsWidget.getAccountHTML HTML-код элемента
    * и добавляет его внутрь элемента виджета
    * */
-  renderItem(data) {
-    data.forEach((item) => {
-      const { name, id } = item,
-        sum = item.sum.toLocaleString('en')
-        html = this.getAccountHTML({ name,id,sum,});
-      this.element.insertAdjacentHTML('beforeend', html);
+  renderItem(item) {
+    this.clear();
+    item.forEach(el => {
+      const accountHTML = this.getAccountHTML(el);
+      this.element.insertAdjacentHTML('beforeend', accountHTML);
     });
-  }
+  };
 }
 
 
