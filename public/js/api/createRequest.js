@@ -25,17 +25,17 @@
     xhr.responseType = options.responseType;
 
     xhr.addEventListener('readystatechange', function() {
-      if (xhr.readyState == xhr.DONE) {
-        const response = xhr.responseText;
-        options.callback(JSON.parse(response));
-      };
-    });
+      if (this.readyState === xhr.DONE && xhr.status === 200) {
+          options.callback(xhr.response);
+      }
+  });
+
   
     try {
       xhr.open(options.method, requestUrl);
       xhr.send(requestData);
-    } catch (error) {
-      options.callback(error);
+    } catch (err) {
+      options.callback(err);
     }
     return xhr;
   };

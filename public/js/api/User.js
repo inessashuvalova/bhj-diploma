@@ -27,7 +27,8 @@
      * из локального хранилища
      * */
     static current() { 
-      return JSON.parse(localStorage.getItem('user'))
+      return JSON.parse(localStorage.getItem('user'));
+    
      }
 
     /**
@@ -41,14 +42,15 @@
         method: 'GET',
         responseType: 'json',
         callback: (err, response) => {
-          if (!err) { 
-            User.setCurrent(response.user)
-          } else { 
-            User.unsetCurrent()}
-          callback(err, response);
-        }
-      });
-    }
+          if (response && response.user) {
+            User.setCurrent(response.user);
+          } else {
+            User.unsetCurrent();
+          }
+           callback(err,response) 
+          }
+        })
+      }
 
     /**
      * Производит попытку авторизации.
@@ -62,15 +64,15 @@
         method: 'POST',
         responseType: 'json',
         data,
-        callback: (err, response) => {
-          if (!err) { 
-            User.setCurrent(response.user)
+        callback:(err, response) => {
+          if(response && response.user) {
+            User.setCurrent(response.user);
           }
-          callback(err, response );
-        }     
-      });
+          callback(err, response)  
+        }
+      })
+  
     }
-
     /**
      * Производит попытку регистрации пользователя.
      * После успешной авторизации необходимо
@@ -83,13 +85,13 @@
         method: 'POST',
         responseType: 'json',
         data,
-        callback: (err, response) => {
-          if (!err) { 
-            User.setCurrent(response.user)
-          } 
-          callback(err, response);
-        }     
-      });
+        callback:  (err, response) => {
+          if(response && response.user) {
+            User.setCurrent(response.user);
+          }
+          callback(err, response)
+        }
+      })
     }
 
     /**
@@ -101,13 +103,16 @@
         url: this.URL + '/logout',
         method: 'POST',
         data,
-        callback: (response) => {
-          if (response.success) {
+        callback: (err, response) => {
+          if(response && response.user) {
             User.unsetCurrent();
             App.setState('init');
           }
+          callback(err, response) 
         },
       });
     }
   }
+  
+  
   

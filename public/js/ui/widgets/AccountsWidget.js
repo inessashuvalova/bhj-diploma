@@ -106,12 +106,7 @@ class AccountsWidget {
    * и добавляет его внутрь элемента виджета
    * */
   renderItem(item) {
-    this.clear();
-    item.forEach(el => {
-      const accountHTML = this.getAccountHTML(el);
-      this.element.insertAdjacentHTML('beforeend', accountHTML);
-    });
-  };
+    this.element.insertAdjacentHTML("beforeEnd", this.getAccountHTML(item));
+  }
 }
-
 

@@ -18,14 +18,21 @@
      * Получает список счетов с помощью Account.list
      * Обновляет в форме всплывающего окна выпадающий список
      * */
-    renderAccountsList() {
-      Account.list(User.current(), (data) => {
-        const selectElement = this.element.querySelector('select');
-        selectElement.innerHTML = '';
-        selectElement.insertAdjacentHTML('afterbegin', data.data.map((item) => `<option value="${item.id}">${item.name}</option>`).join(' '));
-      })
-    }
 
+    renderAccountsList() {
+      const selectElement = this.element.querySelector('.accounts-select'),
+        renderItem = (item) => {
+          selectElement.innerHTML += `<option value="${item.id}">${item.name}</option>`;
+        };
+      Account.list(User.current(), (response) => {
+        if (response.data) {
+          selectElement.innerHTML = '';
+          response.data.forEach(renderItem);
+        } else {
+          return;
+        }
+      });
+    }
     /**
      * Создаёт новую транзакцию (доход или расход)
      * с помощью Transaction.create. По успешному результату
@@ -33,7 +40,6 @@
      * в котором находится форма
      * */
      onSubmit(options) {
-      const modal = this.element.closest('.modal').dataset.modalId;
       Transaction.create(options, App.update.bind(App));
       this.element.reset()
       App.getModal( `new${options.type.slice(0,1).toUpperCase()}${options.type.slice(1)}` ).close()

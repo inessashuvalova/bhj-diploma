@@ -39,6 +39,16 @@
       "name": "",
       "user_id": "rsmdv7o8ko3u4jx5",
       "id": "rsmdv9n4koilmdnb"
+    },
+    {
+      "name": "Сбербанк",
+      "user_id": "rsmdv5c8koilmz9n",
+      "id": "rsmdvawckozit4t1"
+    },
+    {
+      "name": "сбербанк",
+      "user_id": "rsmdv5c8koilmz9n",
+      "id": "rsmdvam8koziuvc8"
     }
   ],
   "transactions": [
@@ -176,6 +186,48 @@
       "sum": 300000,
       "type": "expense",
       "user_id": "1"
+    },
+    {
+      "id": "rsmdv2sgkozisrwv",
+      "type": "income",
+      "name": "услуги",
+      "sum": 200,
+      "account_id": "rsmdv9n4koilmdnb",
+      "user_id": "rsmdv7o8ko3u4jx5",
+      "created_at": "2021-05-22T08:59:09.774Z"
+    },
+    {
+      "id": "rsmdvc20kozkew71",
+      "type": "income",
+      "name": "оказание услуг",
+      "sum": 5000,
+      "account_id": "rsmdv9n4koilmdnb",
+      "user_id": "rsmdv7o8ko3u4jx5",
+      "created_at": "2021-05-22T09:44:21.372Z"
+    },
+    {
+      "id": "rsmdvc00kp0pgh3m",
+      "type": "income",
+      "name": "услуги",
+      "sum": 1000,
+      "user_id": "rsmdv7o8ko3u4jx5",
+      "created_at": "2021-05-23T04:53:19.377Z"
+    },
+    {
+      "id": "rsmdv5f0kp0ps3k9",
+      "type": "income",
+      "name": "услуги",
+      "sum": 9000,
+      "user_id": "rsmdv5c8koilmz9n",
+      "created_at": "2021-05-23T05:02:21.704Z"
+    },
+    {
+      "id": "rsmdv5askp1l4bvw",
+      "type": "income",
+      "name": "услуги",
+      "sum": 9000,
+      "user_id": "rsmdv5c8koilmz9n",
+      "created_at": "2021-05-23T19:39:40.459Z"
     }
   ]
 }
