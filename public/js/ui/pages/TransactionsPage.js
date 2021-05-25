@@ -75,11 +75,14 @@ class TransactionsPage {
       if (!confirm('Вы действительно хотите удалить счёт?')) {
         return;
       }
-      const { account_id } = this.lastOptions;
-        Account.remove(User.current(), account_id, App.update.bind(App));
-          this.clear();
+        Account.remove(this.lastOptions.account_id, {}, (err, response) => {
+          if (!response.success) {
+            this.clear();
+              App.update();
 
     }
+  })
+}
 
   /**
    * Удаляет транзакцию (доход или расход). Требует
@@ -96,9 +99,13 @@ class TransactionsPage {
     const isConfirm = confirm(`Вы действительно хотите удалить транзакцию: ${transactionTitle}`);
     if (isConfirm) {
       transactionElement.remove();
-      Transaction.remove(id, User.current(), App.update.bind(App));
+      Transaction.remove(id, {}, (err, response) => {
+        if (response, response.success) {
+          App.update();
+        }
+    })
     }
-  }
+}
 
   /**
    * С помощью Account.get() получает название счёта и отображает

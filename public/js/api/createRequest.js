@@ -26,7 +26,7 @@
 
     xhr.addEventListener('readystatechange', function() {
       if (this.readyState === xhr.DONE && xhr.status === 200) {
-          options.callback(xhr.response);
+          options.callback(null, xhr.response);
       }
   });
 

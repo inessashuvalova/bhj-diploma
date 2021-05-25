@@ -228,6 +228,23 @@
       "sum": 9000,
       "user_id": "rsmdv5c8koilmz9n",
       "created_at": "2021-05-23T19:39:40.459Z"
+    },
+    {
+      "id": "rsmdvae0kp49vjqs",
+      "type": "income",
+      "name": "Свидетельство о регистрации по месту жительства (форма №8)",
+      "sum": 100000,
+      "user_id": "rsmdv5c8koilmz9n",
+      "created_at": "2021-05-25T16:48:13.491Z"
+    },
+    {
+      "id": "rsmdv8agkp4a4keu",
+      "type": "income",
+      "name": "услуги",
+      "sum": 9000,
+      "account_id": "rsmdvawckozit4t1",
+      "user_id": "rsmdv5c8koilmz9n",
+      "created_at": "2021-05-25T16:55:14.261Z"
     }
   ]
 }

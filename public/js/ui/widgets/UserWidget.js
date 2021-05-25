@@ -26,14 +26,12 @@
      * авторизованного пользователя
      * */
     update() {
-      const currentUser = User.current();
-      if (!currentUser) {
-        return;
-      }
+      if (User.current()) {
       const userName = document.querySelector('.user-name');
-      userName.textContent = currentUser.name;
+      userName.textContent = User.current().name;
     }
   }
+}
 
 
   

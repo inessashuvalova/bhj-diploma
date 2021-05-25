@@ -24,7 +24,7 @@
         renderItem = (item) => {
           selectElement.innerHTML += `<option value="${item.id}">${item.name}</option>`;
         };
-      Account.list(User.current(), (response) => {
+      Account.list(User.current(), (err, response) => {
         if (response.data) {
           selectElement.innerHTML = '';
           response.data.forEach(renderItem);
@@ -40,9 +40,13 @@
      * в котором находится форма
      * */
      onSubmit(options) {
-      Transaction.create(options, App.update.bind(App));
+      Transaction.create(options, (err, response) => {
+        if (!response.success) {
+          return;
+        }
       this.element.reset()
       App.getModal( `new${options.type.slice(0,1).toUpperCase()}${options.type.slice(1)}` ).close()
       App.update(); 
-  }
+}
+      )}
 }
