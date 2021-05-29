@@ -20,18 +20,11 @@
      * */
 
     renderAccountsList() {
-      const selectElement = this.element.querySelector('.accounts-select'),
-        renderItem = (item) => {
-          selectElement.innerHTML += `<option value="${item.id}">${item.name}</option>`;
-        };
       Account.list(User.current(), (err, response) => {
-        if (response.data) {
-          selectElement.innerHTML = '';
-          response.data.forEach(renderItem);
-        } else {
-          return;
-        }
-      });
+        const selectElement = this.element.querySelector('select');
+      selectElement.innerHTML = '';
+      selectElement.insertAdjacentHTML('afterbegin', response.data.map((item) => `<option value="${item.id}">${item.name}</option>`).join(' '));
+    })
     }
     /**
      * Создаёт новую транзакцию (доход или расход)

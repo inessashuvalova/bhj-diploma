@@ -76,7 +76,7 @@ class TransactionsPage {
         return;
       }
         Account.remove(this.lastOptions.account_id, {}, (err, response) => {
-          if (!response.success) {
+          if (response.success) {
             this.clear();
               App.update();
 
@@ -100,7 +100,7 @@ class TransactionsPage {
     if (isConfirm) {
       transactionElement.remove();
       Transaction.remove(id, {}, (err, response) => {
-        if (response, response.success) {
+        if (response && response.success) {
           App.update();
         }
     })
@@ -118,11 +118,19 @@ class TransactionsPage {
       return;
     }
       this.lastOptions = options;
-        Account.get(options.account_id, User.current(), this.renderTitle.bind(this)
-    );
-        Transaction.list(options, this.renderTransactions.bind(this));
-
-  }
+        Account.get(options.account_id, User.current(), {}, (err, response) => {
+          if (response && response.success) {
+            this.renderTitle(response.data.name);
+          }
+        })
+    
+        Transaction.list(options, (err, response) => {
+          if (response && response.success) {
+          this.renderTransactions(response.data);
+          }
+        })
+      }
+    
 
   /**
    * Очищает страницу. Вызывает
@@ -130,8 +138,9 @@ class TransactionsPage {
    * Устанавливает заголовок: «Название счёта»
    * */
   clear() {
-    this.renderTitle({data: { name: 'Название счета' } });
-    this.renderTransactions({data: []});
+    this.renderTransactions([]);
+    this.renderTitle("Название счета");
+    this.lastOptions = null;
   }
 
   /**

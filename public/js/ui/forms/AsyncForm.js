@@ -27,15 +27,11 @@ class AsyncForm {
    * вызывает метод submit()
    * */
   registerEvents() {
-    const btnPrimary = document.querySelectorAll('.btn-primary');
-    btnPrimary.forEach( elem => {
-      elem.addEventListener( "click" , (evt) => {
-       evt.preventDefault();
-       this.submit();
-      }) 
+    this.element.addEventListener("submit", (event) => {
+      event.preventDefault();
+      this.submit();
     })
-    
-  }
+}
 
   /**
    * Преобразует данные формы в объект вида

@@ -27,18 +27,16 @@ class AccountsWidget {
    * вызывает AccountsWidget.onSelectAccount()
    * */
   registerEvents() {
-    const  createAccount = document.querySelector('.create-account');
-    createAccount.addEventListener("click", () => {
-      App.getModal('createAccount').open();
+    document.querySelector(".create-account").addEventListener("click", () => {
+      App.getModal("createAccount").open();
     })
-    this.element.addEventListener('click', (e) => {
-      const currentElem = e.target;
-      const account = currentElem.closest('.account')
-      if (account && account.classList.contains('account')) {
-        this.onSelectAccount(currentElem);
+    
+    document.querySelector(".accounts-panel").addEventListener("click", e => {
+      if (e.target.closest(".account")) {
+        this.onSelectAccount(e.target.closest(".account"))
       }
-    });
-      }
+    })
+  }
 
   /**
    * Метод доступен только авторизованным пользователям

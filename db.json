@@ -245,6 +245,15 @@
       "account_id": "rsmdvawckozit4t1",
       "user_id": "rsmdv5c8koilmz9n",
       "created_at": "2021-05-25T16:55:14.261Z"
+    },
+    {
+      "id": "rsmdv73gkp8w6q72",
+      "type": "income",
+      "name": "Свидетельство о регистрации по месту жительства (форма №8)",
+      "sum": 900,
+      "account_id": "rsmdv9n4koilmdnb",
+      "user_id": "rsmdv7o8ko3u4jx5",
+      "created_at": "2021-05-28T22:23:51.325Z"
     }
   ]
 }
