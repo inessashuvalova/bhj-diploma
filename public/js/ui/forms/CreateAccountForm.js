@@ -9,7 +9,7 @@ class CreateAccountForm extends AsyncForm {
    * и сбрасывает форму
    * */
   onSubmit(options) {
-    Account.create(options.data, (err, response) => {
+    Account.create(options, (err, response) => {
       if (!response.success) {
         return;
       }

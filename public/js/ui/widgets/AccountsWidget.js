@@ -17,7 +17,7 @@ class AccountsWidget {
     this.element = element;
     this.registerEvents();
     this.update();
-      }
+  }
 
   /**
    * При нажатии на .create-account открывает окно
@@ -30,7 +30,7 @@ class AccountsWidget {
     document.querySelector(".create-account").addEventListener("click", () => {
       App.getModal("createAccount").open();
     })
-    
+
     document.querySelector(".accounts-panel").addEventListener("click", e => {
       if (e.target.closest(".account")) {
         this.onSelectAccount(e.target.closest(".account"))
@@ -49,20 +49,19 @@ class AccountsWidget {
    * метода renderItem()
    * */
   update() {
-    if (User.current()) {
-      return;
-    }
     Account.list(User.current(), (err, response) => {
       if (!response.success) {
-          return;
+        return;
       }
-        if (response.data) {
-      this.clear();
-      this.renderItem(data);
-    }
-  });
+      if (response.data) {
+        this.clear();
+            response.data.forEach(value => {
+              this.renderItem(value);
+            })
+        }
+    });
   }
-  
+
   /**
    * Очищает список ранее отображённых счетов.
    * Для этого необходимо удалять все элементы .account
@@ -70,8 +69,8 @@ class AccountsWidget {
    * */
   clear() {
     const account = document.querySelectorAll('.account');
-    account.forEach( elem => {elem.remove()});
-      }
+    account.forEach(elem => { elem.remove() });
+  }
 
   /**
    * Срабатывает в момент выбора счёта
@@ -85,7 +84,7 @@ class AccountsWidget {
       document.querySelector('.active').classList.remove('active');
       element.classList.add('active');
     })
-    App.showPage( 'transactions', { account_id: element.dataset.id })
+    App.showPage('transactions', { account_id: element.dataset.id })
   }
 
   /**
@@ -93,7 +92,7 @@ class AccountsWidget {
    * отображения в боковой колонке.
    * item - объект с данными о счёте
    * */
-  getAccountHTML(item){
+  getAccountHTML(item) {
     return `<li class="account" data-account-Id="${item.id}">
     <a href="#">
       <span>${item.name}</span> / <span>${item.sum} ₽</span>

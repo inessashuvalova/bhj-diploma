@@ -10,7 +10,7 @@ class TransactionsPage {
    * Сохраняет переданный элемент и регистрирует события
    * через registerEvents()
    * */
-  constructor( element ) {
+  constructor(element) {
     if (!element) {
       throw new Error('Элемент должен быть передан!');
     }
@@ -69,20 +69,20 @@ class TransactionsPage {
    * для обновления приложения
    * */
   removeAccount() {
-      if (!this.lastOptions) {
-        return;
-      }
-      if (!confirm('Вы действительно хотите удалить счёт?')) {
-        return;
-      }
-        Account.remove(this.lastOptions.account_id, {}, (err, response) => {
-          if (response.success) {
-            this.clear();
-              App.update();
-
+    if (!this.lastOptions) {
+      return;
     }
-  })
-}
+    if (!confirm('Вы действительно хотите удалить счёт?')) {
+      return;
+    }
+    Account.remove(this.lastOptions.account_id, {}, (err, response) => {
+      if (response.success) {
+        this.clear();
+        App.update();
+
+      }
+    })
+  }
 
   /**
    * Удаляет транзакцию (доход или расход). Требует
@@ -103,9 +103,9 @@ class TransactionsPage {
         if (response && response.success) {
           App.update();
         }
-    })
+      })
     }
-}
+  }
 
   /**
    * С помощью Account.get() получает название счёта и отображает
@@ -113,24 +113,24 @@ class TransactionsPage {
    * Получает список Transaction.list и полученные данные передаёт
    * в TransactionsPage.renderTransactions()
    * */
-  render(options){
+  render(options) {
     if (!options) {
       return;
     }
-      this.lastOptions = options;
-        Account.get(options.account_id, User.current(), {}, (err, response) => {
-          if (response && response.success) {
-            this.renderTitle(response.data.name);
-          }
-        })
-    
-        Transaction.list(options, (err, response) => {
-          if (response && response.success) {
-          this.renderTransactions(response.data);
-          }
-        })
+    this.lastOptions = options;
+    Account.get(options.account_id, User.current(), {}, (err, response) => {
+      if (response && response.success) {
+        this.renderTitle(response.data.name);
       }
-    
+    })
+
+    Transaction.list(options, (err, response) => {
+      if (response && response.success) {
+        this.renderTransactions(response.data);
+      }
+    })
+  }
+
 
   /**
    * Очищает страницу. Вызывает
@@ -146,7 +146,7 @@ class TransactionsPage {
   /**
    * Устанавливает заголовок в элемент .content-title
    * */
-  renderTitle(name){
+  renderTitle(name) {
     const titleElement = this.element.querySelector('.content-title');
     titleElement.innerText = name;
   }
@@ -155,39 +155,39 @@ class TransactionsPage {
    * Форматирует дату в формате 2019-03-10 03:20:41 (строка)
    * в формат «10 марта 2019 г. в 03:20»
    * */
-  formatDate(date){
+  formatDate(date) {
     const d = new Date(date.replace(' ', 'T')),
-    day = d.getDate(),
-    months = [
-      'января',
-      'февраля',
-      'марта',
-      'апреля',
-      'мая',
-      'июня',
-      'июля',
-      'августа',
-      'сентября',
-      'октября',
-      'ноября',
-      'декабря',
-    ],
-    month = months[d.getMonth()],
-    year = d.getFullYear(),
-    hours = d.getHours(),
-    minutes = d.getMinutes(),
-    formatTime = (x) => (x < 10 ? '0' + x : x);
+      day = d.getDate(),
+      months = [
+        'января',
+        'февраля',
+        'марта',
+        'апреля',
+        'мая',
+        'июня',
+        'июля',
+        'августа',
+        'сентября',
+        'октября',
+        'ноября',
+        'декабря',
+      ],
+      month = months[d.getMonth()],
+      year = d.getFullYear(),
+      hours = d.getHours(),
+      minutes = d.getMinutes(),
+      formatTime = (x) => (x < 10 ? '0' + x : x);
 
-  return `${day} ${month} ${year} г. в ${formatTime(hours)}:${formatTime(
-    minutes
-  )}`;
+    return `${day} ${month} ${year} г. в ${formatTime(hours)}:${formatTime(
+      minutes
+    )}`;
   }
 
   /**
    * Формирует HTML-код транзакции (дохода или расхода).
    * item - объект с информацией о транзакции
    * */
-  getTransactionHTML(item){
+  getTransactionHTML(item) {
     return `
     <div class="transaction transaction_${item.type.toLowerCase()} row">
     <div class="col-md-7 transaction__details">
@@ -222,6 +222,5 @@ class TransactionsPage {
     transactionContent.innerHTML = '';
     transactionContent.insertAdjacentHTML('afterbegin', template);
   }
-  }
+}
 
-  

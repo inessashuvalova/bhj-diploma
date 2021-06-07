@@ -49,6 +49,26 @@
       "name": "сбербанк",
       "user_id": "rsmdv5c8koilmz9n",
       "id": "rsmdvam8koziuvc8"
+    },
+    {
+      "user_id": "rsmdv7o8ko3u4jx5",
+      "id": "rsmdv4dokpcjafeo"
+    },
+    {
+      "user_id": "rsmdv7o8ko3u4jx5",
+      "id": "rsmdv4kokpcjchlm"
+    },
+    {
+      "user_id": "rsmdv7o8ko3u4jx5",
+      "id": "rsmdv83okpcjdyiw"
+    },
+    {
+      "user_id": "rsmdv7o8ko3u4jx5",
+      "id": "rsmdv9lokpcjkygz"
+    },
+    {
+      "user_id": "rsmdv7o8ko3u4jx5",
+      "id": "rsmdv2mkkpcjuvrf"
     }
   ],
   "transactions": [
@@ -254,6 +274,33 @@
       "account_id": "rsmdv9n4koilmdnb",
       "user_id": "rsmdv7o8ko3u4jx5",
       "created_at": "2021-05-28T22:23:51.325Z"
+    },
+    {
+      "id": "rsmdv7uwkpcjbaab",
+      "type": "income",
+      "name": "Услуги",
+      "sum": 900,
+      "account_id": "rsmdv4dokpcjafeo",
+      "user_id": "rsmdv7o8ko3u4jx5",
+      "created_at": "2021-05-31T11:34:33.682Z"
+    },
+    {
+      "id": "rsmdv40skpcjbypo",
+      "type": "expense",
+      "name": "Канцтовары",
+      "sum": 500,
+      "account_id": "rsmdv4dokpcjafeo",
+      "user_id": "rsmdv7o8ko3u4jx5",
+      "created_at": "2021-05-31T11:35:05.339Z"
+    },
+    {
+      "id": "rsmdv9cgkpck0djk",
+      "type": "income",
+      "name": "Сбербанк",
+      "sum": 900,
+      "account_id": "rsmdv2mkkpcjuvrf",
+      "user_id": "rsmdv7o8ko3u4jx5",
+      "created_at": "2021-05-31T11:54:04.303Z"
     }
   ]
 }

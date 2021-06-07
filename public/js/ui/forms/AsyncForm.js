@@ -12,15 +12,15 @@ class AsyncForm {
    * Сохраняет переданный элемент и регистрирует события
    * через registerEvents()
    * */
-  constructor( element ) {
+  constructor(element) {
     if (!element) {
       throw new Error('Переданный в качестве параметра элемент не существует');
     };
     this.element = element;
     this.registerEvents();
-    
-      }
-      
+
+  }
+
 
   /**
    * Необходимо запретить отправку формы и в момент отправки
@@ -31,7 +31,7 @@ class AsyncForm {
       event.preventDefault();
       this.submit();
     })
-}
+  }
 
   /**
    * Преобразует данные формы в объект вида
@@ -48,11 +48,11 @@ class AsyncForm {
       },
       {}
     );
-    }
+  }
 
 
 
-  onSubmit( options ) {
+  onSubmit(options) {
 
   }
 
@@ -62,6 +62,6 @@ class AsyncForm {
    * */
   submit() {
     this.onSubmit(this.getData());
-      }
-    
-    }
+  }
+
+}
