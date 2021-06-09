@@ -217,10 +217,12 @@ class TransactionsPage {
    * используя getTransactionHTML
    * */
   renderTransactions(data) {
-    const template = data.map(el => this.getTransactionHTML(el)).join(' ');
-    const transactionContent = this.element.querySelector('.content');
-    transactionContent.innerHTML = '';
-    transactionContent.insertAdjacentHTML('afterbegin', template);
+    const transactionContent = document.querySelector(".content");
+    transactionContent.innerHTML = "";
+
+      data.forEach(element => {
+        transactionContent.innerHTML += this.getTransactionHTML(element);
+      });
   }
 }
 

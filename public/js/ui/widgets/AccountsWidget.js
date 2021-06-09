@@ -80,13 +80,17 @@ class AccountsWidget {
    * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
    * */
   onSelectAccount(element) {
-    element.addEventListener("click", () => {
-      document.querySelector('.active').classList.remove('active');
-      element.classList.add('active');
-    })
-    App.showPage('transactions', { account_id: element.dataset.id })
-  }
+  const currentAccount = element.closest('.account');
+    const accounts = [
+      ...element.closest('.accounts-panel').querySelectorAll('.account'),
+    ];
+    accounts.forEach((account) => account.classList.remove('active'));
+    currentAccount.classList.add('active');
 
+    App.showPage('transactions', {
+      account_id: currentAccount.dataset.accountId,
+    });
+  }
   /**
    * Возвращает HTML-код счёта для последующего
    * отображения в боковой колонке.
