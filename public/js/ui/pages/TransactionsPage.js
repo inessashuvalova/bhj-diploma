@@ -114,21 +114,20 @@ class TransactionsPage {
    * в TransactionsPage.renderTransactions()
    * */
   render(options) {
-    if (!options) {
-      return;
-    }
-    this.lastOptions = options;
-    Account.get(options.account_id, User.current(), {}, (err, response) => {
-      if (response && response.success) {
-        this.renderTitle(response.data.name);
-      }
-    })
+    if (options) {
+      Account.get(options.account_id, options, (err, response) => {
+        if (!err) {
+          this.lastOptions = options;
+          this.renderTitle(response.data.name);
+        }
+      })
 
-    Transaction.list(options, (err, response) => {
-      if (response && response.success) {
-        this.renderTransactions(response.data);
-      }
-    })
+      Transaction.list(options, (err, response) => {
+        if (!err) {
+          this.renderTransactions(response.data);
+        }
+      });
+    }
   }
 
 
@@ -220,9 +219,9 @@ class TransactionsPage {
     const transactionContent = document.querySelector(".content");
     transactionContent.innerHTML = "";
 
-      data.forEach(element => {
-        transactionContent.innerHTML += this.getTransactionHTML(element);
-      });
+    data.forEach(element => {
+      transactionContent.innerHTML += this.getTransactionHTML(element);
+    });
   }
 }
 

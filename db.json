@@ -36,11 +36,6 @@
       "id": "3"
     },
     {
-      "name": "",
-      "user_id": "rsmdv7o8ko3u4jx5",
-      "id": "rsmdv9n4koilmdnb"
-    },
-    {
       "name": "Сбербанк",
       "user_id": "rsmdv5c8koilmz9n",
       "id": "rsmdvawckozit4t1"
@@ -51,24 +46,14 @@
       "id": "rsmdvam8koziuvc8"
     },
     {
+      "name": "Альфа",
       "user_id": "rsmdv7o8ko3u4jx5",
-      "id": "rsmdv4dokpcjafeo"
+      "id": "rsmdv4k4kprfdjd5"
     },
     {
+      "name": "ВТБ",
       "user_id": "rsmdv7o8ko3u4jx5",
-      "id": "rsmdv4kokpcjchlm"
-    },
-    {
-      "user_id": "rsmdv7o8ko3u4jx5",
-      "id": "rsmdv83okpcjdyiw"
-    },
-    {
-      "user_id": "rsmdv7o8ko3u4jx5",
-      "id": "rsmdv9lokpcjkygz"
-    },
-    {
-      "user_id": "rsmdv7o8ko3u4jx5",
-      "id": "rsmdv2mkkpcjuvrf"
+      "id": "rsmdv8wgkprfeehm"
     }
   ],
   "transactions": [
@@ -208,24 +193,6 @@
       "user_id": "1"
     },
     {
-      "id": "rsmdv2sgkozisrwv",
-      "type": "income",
-      "name": "услуги",
-      "sum": 200,
-      "account_id": "rsmdv9n4koilmdnb",
-      "user_id": "rsmdv7o8ko3u4jx5",
-      "created_at": "2021-05-22T08:59:09.774Z"
-    },
-    {
-      "id": "rsmdvc20kozkew71",
-      "type": "income",
-      "name": "оказание услуг",
-      "sum": 5000,
-      "account_id": "rsmdv9n4koilmdnb",
-      "user_id": "rsmdv7o8ko3u4jx5",
-      "created_at": "2021-05-22T09:44:21.372Z"
-    },
-    {
       "id": "rsmdvc00kp0pgh3m",
       "type": "income",
       "name": "услуги",
@@ -267,40 +234,31 @@
       "created_at": "2021-05-25T16:55:14.261Z"
     },
     {
-      "id": "rsmdv73gkp8w6q72",
+      "id": "rsmdvv8kprfffs1",
       "type": "income",
-      "name": "Свидетельство о регистрации по месту жительства (форма №8)",
-      "sum": 900,
-      "account_id": "rsmdv9n4koilmdnb",
+      "name": "Перевозка ",
+      "sum": 1000,
+      "account_id": "rsmdv8wgkprfeehm",
       "user_id": "rsmdv7o8ko3u4jx5",
-      "created_at": "2021-05-28T22:23:51.325Z"
+      "created_at": "2021-06-10T21:42:21.600Z"
     },
     {
-      "id": "rsmdv7uwkpcjbaab",
+      "id": "rsmdv3qkkprhvc3r",
       "type": "income",
-      "name": "Услуги",
-      "sum": 900,
-      "account_id": "rsmdv4dokpcjafeo",
-      "user_id": "rsmdv7o8ko3u4jx5",
-      "created_at": "2021-05-31T11:34:33.682Z"
-    },
-    {
-      "id": "rsmdv40skpcjbypo",
-      "type": "expense",
-      "name": "Канцтовары",
+      "name": "Верстка блока ",
       "sum": 500,
-      "account_id": "rsmdv4dokpcjafeo",
+      "account_id": "rsmdv4k4kprfdjd5",
       "user_id": "rsmdv7o8ko3u4jx5",
-      "created_at": "2021-05-31T11:35:05.339Z"
+      "created_at": "2021-06-10T22:50:42.566Z"
     },
     {
-      "id": "rsmdv9cgkpck0djk",
-      "type": "income",
-      "name": "Сбербанк",
-      "sum": 900,
-      "account_id": "rsmdv2mkkpcjuvrf",
+      "id": "rsmdvad8kprhw4dp",
+      "type": "expense",
+      "name": "Приобретение принтера б\\у",
+      "sum": 500,
+      "account_id": "rsmdv4k4kprfdjd5",
       "user_id": "rsmdv7o8ko3u4jx5",
-      "created_at": "2021-05-31T11:54:04.303Z"
+      "created_at": "2021-06-10T22:51:19.212Z"
     }
   ]
 }
