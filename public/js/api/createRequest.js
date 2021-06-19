@@ -6,39 +6,44 @@
 const createRequest = (options = {}) => {
   
   const requestData = new FormData();
-  let requestUrl = options.url;
   const xhr = new XMLHttpRequest();
 
-  if (options.data) {
-    if (options.method == 'GET' && Object.keys(options.data).length != 0) {
-      requestUrl = `${options.url}?${getUrl(options.data)}`;
-    } else {
-      Object.entries(options.data).forEach(([key, value]) => requestData.append(key, value));
-    }
-  }
-
-  xhr.open(options.method, requestUrl);
-  xhr.withCredentials = true;
   xhr.responseType = options.responseType;
+  xhr.withCredentials = true;
 
-  xhr.addEventListener('readystatechange', function () {
-    if (this.readyState === xhr.DONE && xhr.status === 200) {
-      options.callback(null, xhr.response);
-    }
-  });
-
-
-  try {
-    xhr.open(options.method, requestUrl);
-    xhr.send(requestData);
-  } catch (err) {
-    options.callback(err);
+  if (options.headers) {
+      console.log(options.headers)
+      for (let header in options.headers) {
+          xhr.setRequestHeader(header, options.headers[item]);
+        }
   }
-  return xhr;
-};
 
-function getUrl(obj) {
-  return Object.entries(obj).map(([key, value]) => `${key}=${value}`).join('&');
+  xhr.addEventListener("readystatechange", () => {
+      if (xhr.status === 200 && xhr.readyState === 4) {
+          options.callback(xhr.response.error, xhr.response)
+      }
+  })
+  
+  try {
+      if (options.method === "GET") {
+          let url = options.url + "?";
+
+          for (let key in options.data) {
+              url += key + "=" + options.data[key] + "&";
+          }
+          url = url.substring(0, url.length - 1);
+          xhr.open(options.method, url);
+          xhr.send();
+      } else {
+          for (let key in options.data) {
+              requestData.append(key, options.data[key]);
+          }
+          xhr.open(options.method, options.url);
+          xhr.send(requestData);
+      }
+  } catch (err) {
+      options.callback(err)
+  }
+  return xhr
+
 }
-
-

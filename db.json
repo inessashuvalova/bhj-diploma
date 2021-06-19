@@ -54,6 +54,11 @@
       "name": "ВТБ",
       "user_id": "rsmdv7o8ko3u4jx5",
       "id": "rsmdv8wgkprfeehm"
+    },
+    {
+      "name": "Промсвязьбанк",
+      "user_id": "rsmdv7o8ko3u4jx5",
+      "id": "rsmdv5n4kq4ale1y"
     }
   ],
   "transactions": [
@@ -259,6 +264,15 @@
       "account_id": "rsmdv4k4kprfdjd5",
       "user_id": "rsmdv7o8ko3u4jx5",
       "created_at": "2021-06-10T22:51:19.212Z"
+    },
+    {
+      "id": "rsmdv7askq4am4ba",
+      "type": "income",
+      "name": "Косметические процедуры",
+      "sum": 20000,
+      "account_id": "rsmdv5n4kq4ale1y",
+      "user_id": "rsmdv7o8ko3u4jx5",
+      "created_at": "2021-06-19T21:48:35.541Z"
     }
   ]
 }

@@ -20,14 +20,16 @@ class CreateTransactionForm extends AsyncForm {
    * */
 
   renderAccountsList() {
-    const accounts = this.element.querySelector(".accounts-select");
-    Account.list(User.current(), (err, response) => {
-      accounts.innerHTML = "";
-
-      response.data.forEach(value => {
-        accounts.innerHTML += `<option value="${value.id}">${value.name}</option>`
-      });
-    })
+    Account.list( User.current(), ( err, response ) => {
+      Array.from( this.element.querySelector( 'select.form-control.accounts-select' ).children ).forEach( elem => elem.remove() )
+      if ( !err ) {
+        response.data.forEach(account => {
+          let acc = document.createElement( 'option' );
+          acc.value = account.id;
+          acc.innerText = account.name;
+          this.element.querySelector( 'select.form-control.accounts-select' ).insertAdjacentElement( 'beforeend', acc );
+        })
+      }}) 
   }
   /**
    * Создаёт новую транзакцию (доход или расход)
